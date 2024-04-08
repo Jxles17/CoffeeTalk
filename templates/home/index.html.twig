@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CoffeeTalk{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper h1, .example-wrapper p{text-align: center;}
+    .buttonhome {
+    background-color: #737880; /* Green */
+    border: solid;
+    border-color: #737880;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    }
+    .buttonhome:hover{background-color: transparent;}
+    .buttons{padding-left: 38%; margin-bottom: 5%;}
+    .banniere-photo{
+        margin-left: -25%;
+        height: 50%;
+    }
+    .div-story{
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin-top: 2%;
+    }
+    .photo-bas1, .photo-bas2{
+        width: 20%;
+        height: 400px;
+        margin: 5%;
+    }
+    .photo-bas1{
+        margin-bottom: 20%;
+    }
+    .photo-bas2{
+        margin-top: 20%;
+    }
+    .texte-story, .texte-brews, .menu-coffee, .menu-snacks{
+        text-align: center;
+    }
+    .texte-story{
+        margin: auto;
+    }
+    .texte-brews{border: solid; border-color: #737880;}
+    .menu-coffee, .menu-snacks{margin-bottom: -20%;}
+    .row{
+        display: flex;
+        flex-direction: row;
+    }
+    .menu-coffee, .menu-snacks{
+        width: 30%;
+    }
+    .menu{
+        margin-top: 5%
+    }
+    .menu-coffee h3, .menu-snacks h3{
+        margin-bottom: 10%;
+    }
+    .host{
+        margin: -10% auto 5% auto;
+    }
+    .host h2, .host p{
+        width: 50%;
+        text-align: center;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1 class="my-4">SIP AND RELAX</h1>
+    <p>Indulge in the warm flavors and cozy ambiance of Coffee Talk, the perfect spot to unwind and enjoy your favorite cup of joe.</p>
+    <div class='buttons'>
+        <button class="buttonhome" type="button">Book a nook</button>
+        <button class="buttonhome" href="/menu">View menu</button>
+    </div>
+    <img src="/coffeebanner.jpg" class="banniere-photo">
+    <div class="div-story">
+        <div class="texte-story">
+            <h2>OUR STORY</h2>
+            <p>Coffee Talk started with a passion for creating a welcoming space where coffee lovers could gather, unwind, and share moments over a cup of specialty brews.</p>
+            <button class="button" type="button">Learn more</button>
+        </div>
+        <img src="/cafe.jpg" class="photo-bas1">
+        <img src="/cafe.jpg" class="photo-bas2">
+    </div>
+    <div class="div-brews">
+        <div class="texte-brews">
+            <h2>OUR BREWS</h2>
+            <p>Explore our selection of carefully crafted coffees and snacks to accompany your cozy moments at Coffee Talk.</p>
+        </div>
+        <div class="menu row" id="menu">
+            <img src="/cafe.jpg" class="photo-bas1">
+            <div class="menu-coffee">
+                    <h3>COFFEE</h3>
+                    <h4>Latte / 15€</h4>
+                    <p>Velvety smooth espresso with steamed milk</p>
+                    <h4>Cappuccino / 15€</h4>
+                    <p>Rich espresso balanced with foamy milk</p>
+                    <h4>Mocha / 15€</h4>
+                    <p>Decadent blend of espresso, chocolate, and steamed milk</p>
+                    <h4>Cold brew / 15€</h4>
+                    <p>Smooth and refreshing coffee over ice</p>
+            </div>
+            <div class="menu-snacks">
+                    <h3>SNACKS</h3>
+                    <h4>Avocado Toast  / 15€</h4>
+                    <p>Fresh avocado on toasted artisan bread</p>
+                    <h4>Bagel and Lox / 15€</h4>
+                    <p>Classic combo of bagel, cream cheese, and smoked salmon</p>
+                    <h4>Granola Bowl / 15€</h4>
+                    <p>Nutritious blend of granola, yogurt, and fresh fruits</p>
+                    <h4>Scone Trio  / 15€</h4>
+                    <p>Assortment of freshly baked sweet and savory scones</p>
+            </div>
+        </div>
+    </div>
+    <div class="host row">
+    <h2>MEET OUR HOST</h2>
+    <p>Our passionate host brings warmth and charm to Coffee Talk, ensuring every visit is filled with friendly vibes.
+
+    With years of expertise, she crafts coffee experiences that resonate with every coffee lover, making each sip memorable.</p>
+    </div>
+</div>
+{% endblock %}
+
+
+
+
