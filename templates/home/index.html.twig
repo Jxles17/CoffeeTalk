@@ -3,21 +3,28 @@
 {% block title %}CoffeeTalk{% endblock %}
 
 {% block body %}
+</div>
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 <style>
     .example-wrapper h1, .example-wrapper p{text-align: center;}
     .buttonhome {
-    background-color: #737880; /* Green */
+    background-color: #B86D47; /* Green */
     border: solid;
-    border-color: #737880;
+    border-color: #B86D47;
     color: white;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
+    margin: 1%;
     }
     .buttonhome:hover{background-color: transparent;}
-    .buttons{padding-left: 38%; margin-bottom: 5%;}
+    .buttons{display: flex; justify-content: center; margin-bottom: 5%;}
     .banniere-photo{
         margin-left: -25%;
         height: 50%;
@@ -29,12 +36,7 @@
         margin-top: 2%;
     }
     .photo-bas1, .photo-bas2{
-        width: 20%;
-        height: 400px;
-        margin: 5%;
-    }
-    .photo-bas1{
-        margin-bottom: 20%;
+        margin-bottom: 5%;
     }
     .photo-bas2{
         margin-top: 20%;
@@ -43,9 +45,11 @@
         text-align: center;
     }
     .texte-story{
-        margin: auto;
+        margin: 5%;
+        width: 50%;
     }
-    .texte-brews{border: solid; border-color: #737880;}
+    .texte-story p{width: 80%; margin: 2% auto 2% auto;}
+    .texte-brews{border: solid; border-color: #B86D47;}
     .menu-coffee, .menu-snacks{margin-bottom: -20%;}
     .row{
         display: flex;
@@ -61,69 +65,117 @@
         margin-bottom: 10%;
     }
     .host{
-        margin: -10% auto 5% auto;
+        margin-top: 5%;
+        text-align: center;
+    }
+    .host h2, .host p{margin: auto;}
+    .container-no-bg{
+        padding: 5% 0%;
+        width: 100%;
     }
     .host h2, .host p{
         width: 50%;
         text-align: center;
     }
+    .abtnhome{text-decoration: none; color: white;}
+    .background-video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        .container-no-bg{
+            background-color: #714423!important;
+        }
+        .bg-vide{
+            height: 250px;
+            width: 100%;
+        }
+        .example-wrapper{height: 300px; width: 100%;}
+        .banniere-photo{width: 100%; height: 800px; margin: auto;}
+        .txt-photo{line-height: 3em; margin-top: -25%; margin-bottom: 5%;}
+        .instasize{width: 10%; margin: 2%}
+        .instagram-posts{display: flex; flex-direction: row; margin-top: 5%; justify-content: center;}
+        .instagram-section{margin-top: 20%}
 </style>
+    <div class="background-video-container">
+        <video class="background-video" autoplay loop muted>
+            <source src="/videopres2.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="example-wrapper">
 
-<div class="example-wrapper">
-    <h1 class="my-4">SIP AND RELAX</h1>
-    <p>Indulge in the warm flavors and cozy ambiance of Coffee Talk, the perfect spot to unwind and enjoy your favorite cup of joe.</p>
-    <div class='buttons'>
-        <button class="buttonhome" type="button">Book a nook</button>
-        <button class="buttonhome" href="/menu">View menu</button>
     </div>
-    <img src="/coffeebanner.jpg" class="banniere-photo">
-    <div class="div-story">
-        <div class="texte-story">
-            <h2>OUR STORY</h2>
-            <p>Coffee Talk started with a passion for creating a welcoming space where coffee lovers could gather, unwind, and share moments over a cup of specialty brews.</p>
-            <button class="button" type="button">Learn more</button>
-        </div>
-        <img src="/cafe.jpg" class="photo-bas1">
-        <img src="/cafe.jpg" class="photo-bas2">
-    </div>
-    <div class="div-brews">
-        <div class="texte-brews">
-            <h2>OUR BREWS</h2>
-            <p>Explore our selection of carefully crafted coffees and snacks to accompany your cozy moments at Coffee Talk.</p>
-        </div>
-        <div class="menu row" id="menu">
+    <div class="container-no-bg">
+        <div class="div-story">
+            <div class="texte-story">
+                <h2>NOTRE HISTOIRE</h2>
+                <p>Coffee Talk a commencé avec la passion de créer un espace accueillant où les amateurs de café pourraient se réunir, se détendre et partager des moments autour d'une tasse de spécialités.</p>
+                <button class="button" type="button">Learn more</button>
+            </div>
             <img src="/cafe.jpg" class="photo-bas1">
-            <div class="menu-coffee">
-                    <h3>COFFEE</h3>
-                    <h4>Latte / 15€</h4>
-                    <p>Velvety smooth espresso with steamed milk</p>
-                    <h4>Cappuccino / 15€</h4>
-                    <p>Rich espresso balanced with foamy milk</p>
-                    <h4>Mocha / 15€</h4>
-                    <p>Decadent blend of espresso, chocolate, and steamed milk</p>
-                    <h4>Cold brew / 15€</h4>
-                    <p>Smooth and refreshing coffee over ice</p>
-            </div>
-            <div class="menu-snacks">
-                    <h3>SNACKS</h3>
-                    <h4>Avocado Toast  / 15€</h4>
-                    <p>Fresh avocado on toasted artisan bread</p>
-                    <h4>Bagel and Lox / 15€</h4>
-                    <p>Classic combo of bagel, cream cheese, and smoked salmon</p>
-                    <h4>Granola Bowl / 15€</h4>
-                    <p>Nutritious blend of granola, yogurt, and fresh fruits</p>
-                    <h4>Scone Trio  / 15€</h4>
-                    <p>Assortment of freshly baked sweet and savory scones</p>
+        </div>
+        <div class="host">
+        <h2>NOS BOISSONS DU MONDE</h2>
+        <p>Nos cafés viennent du monde entier découvrez d'où précisément !</p>
+        <div id="map" style="height: 400px; width: 60%; margin: auto; margin-bottom: 5%; margin-top: 5%;"></div>
+        <p>- Café 1 - Londres, Royaume-Uni</p>
+        <p>- Café 2 - Paris, France</p>
+        </div>
+
+        <div class="host">
+            <img src="barista.jpg" class="banniere-photo">
+            <div class="txt-photo">
+            <h2>Nos êvenements chaque mois</h2>
+            <p>Découvrez nos événements spéciaux ! De la musique live aux dégustations de café, nous organisons régulièrement des activités pour animer votre expérience CoffeeTalk. Rejoignez-nous pour des moments inoubliables !</p>
+            <button class="button">Nos évenements</button>
+        </div>
+        <div class="instagram-section">
+            <h2>Suivez-nous sur Instagram</h2>
+            <div class="instagram-posts">
+                    <img src="125.jpg" class="instasize" alt="Post 1">
+                    <img src="125.jpg" class="instasize" alt="Post 2">
+                    <img src="125.jpg" class="instasize" alt="Post 3">
+                    <img src="125.jpg" class="instasize" alt="Post 4">
             </div>
         </div>
+        </div>
     </div>
-    <div class="host row">
-    <h2>MEET OUR HOST</h2>
-    <p>Our passionate host brings warmth and charm to Coffee Talk, ensuring every visit is filled with friendly vibes.
+    
+    <script>// Initialise la carte Leaflet
+    var map = L.map("map").setView([0, 0], 2); // Centre la carte sur le monde entier avec un zoom de 2
 
-    With years of expertise, she crafts coffee experiences that resonate with every coffee lover, making each sip memorable.</p>
-    </div>
-</div>
+    // Ajoute une couche de tuiles OpenStreetMap
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    }).addTo(map);
+
+    // Ajoute des marqueurs pour chaque pays avec un café
+    var cafes = [
+    { name: "Café 1", location: [51.505, -0.09] }, // Exemple : Londres, Royaume-Uni
+    { name: "Café 2", location: [48.8566, 2.3522] }, // Exemple : Paris, France
+    // Ajoutez d'autres cafés avec leurs coordonnées géographiques
+    ];
+
+    cafes.forEach(function (cafe) {
+    L.marker(cafe.location)
+        .addTo(map)
+        .bindPopup(cafe.name);
+    });</script>
 {% endblock %}
 
 

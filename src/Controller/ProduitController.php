@@ -10,14 +10,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-
-
+#[IsGranted('ROLE_USER')]
 class ProduitController extends AbstractController
 {
-    #[Route('/produits', name: 'produit.index')]
+    #[Route('/admin/produits', name: 'produit.index')]
     public function index(ProduitRepository $repository): Response
     {   
+
+        // $this->denyAccessUnlessGranted('ROLE_USER');
 
         $produits = $repository->findAll();
 
@@ -25,7 +27,7 @@ class ProduitController extends AbstractController
     }
 
 
-    #[Route('/produits/{id}', name: 'produit.show', requirements: ['id' => '\d+'])] 
+    #[Route('/admin/produits/{id}', name: 'produit.show', requirements: ['id' => '\d+'])] 
     public function show (Request $request, int $id, ProduitRepository $repository): Response
     {
         $produit = $repository->find($id);
@@ -38,7 +40,7 @@ class ProduitController extends AbstractController
 
 
 
-    #[Route('/produits/{id}/edit', name: 'produit.edit', methods:['GET', 'POST'])]
+    #[Route('/admin/produits/{id}/edit', name: 'produit.edit', methods:['GET', 'POST'])]
     public function edit(Produit $produit, Request $request, EntityManagerInterface $em)
     {   
         $form = $this->createForm(ProduitType::class, $produit);
@@ -54,7 +56,7 @@ class ProduitController extends AbstractController
         ]);
     }
 
-    #[Route('/produits/create', name: 'produit.create')]
+    #[Route('/admin/produits/create', name: 'produit.create')]
     public function create(Request $request, EntityManagerInterface $em){
 
         $produit = new Produit();
@@ -72,7 +74,7 @@ class ProduitController extends AbstractController
     }
 
 
-    #[Route('/produits/{id}/delete', name: 'produit.delete', methods:['GET', 'POST', 'DELETE'])]
+    #[Route('/admin/produits/{id}/delete', name: 'produit.delete', methods:['GET', 'POST', 'DELETE'])]
     public function delete(Request $request, EntityManagerInterface $em, ProduitRepository $produitRepository, $id){
 
         $produit = $produitRepository->find($id);

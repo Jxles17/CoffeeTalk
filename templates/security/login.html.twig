@@ -1,8 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}Connexion{% endblock %}
 
 {% block body %}
+<style>
+    .btn{margin: 0 0 5% 0}
+</style>
 <form method="post">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -33,5 +36,7 @@
     <button class="btn btn-lg btn-primary" type="submit">
         Sign in
     </button>
+    ou
+    <button class="btn btn-lg btn-primary"><a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/register">S'inscrire</a></button>
 </form>
 {% endblock %}
