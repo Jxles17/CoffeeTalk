@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des êvenements{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        th,
+    td {
+    border: 1px solid rgb(160 160 160);
+    padding: 8px 10px;
+    }
+</style>
+
+<div class="example-wrapper">
+    <h1>Gestion des êvenements</h1>
+
+    <a class="btn btn-primary" href="{{path ('event.create')}}">Créer un event</a>
+
+    <table ="table">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <body>
+                {% for event in events %}
+                <tr>
+                    <td>
+                    <a class="event" href="{{ path('event.show', {id: event.id}) }}">{{ event.title }}</a>
+                    </td>
+                    <td>
+                    <a class="btn btn-primary btn-sm" href="{{path ('event.edit', {id: event.id}) }}">Modifier</a>
+                    </td>
+                    <td>
+                    <form action="{{path ('event.delete', {id: event.id}) }}" method ="post">
+                        <input type="hidden" name="_method" value="DELETE"></input>
+                        <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                    </form>
+                    </td>
+                </tr>
+                {% endfor %}
+        </body>
+    </table>
+
+</div>
+{% endblock %}

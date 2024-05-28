@@ -1,0 +1,116 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block body %}
+<style>
+    .dashboard-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-buttons {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .dashboard-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+        text-align: center;
+        color: white;
+        background-color: #007bff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+    }
+
+    .dashboard-button:hover {
+        background-color: #0056b3;
+    }
+
+    .dashboard-section {
+        margin-bottom: 2rem;
+        width: 100%;
+    }
+
+    .dashboard-section-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .statistics, .activities {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        color: black;
+    }
+
+    .stat, .activity {
+        padding: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+</style>
+
+<div class="dashboard-container">
+    <h1 class="dashboard-title">Admin Dashboard</h1>
+
+    <div class="dashboard-buttons">
+        <a href="{{ path('event.index') }}" class="dashboard-button">Manage Events</a>
+        <a href="{{ path('produit.index') }}" class="dashboard-button">Manage Products</a>
+        <a href="{{ path('add_loyalty_points') }}" class="dashboard-button">Manage Loyalty Points</a>
+    </div>
+
+    <div class="dashboard-section">
+        <h2 class="dashboard-section-title">Statistics</h2>
+        <div class="statistics">
+            <div class="stat">Total Users: {{ totalUsers }}</div>
+            <div class="stat">Total Products: {{ totalProducts }}</div>
+            <div class="stat">Total Events: {{ totalEvents }}</div>
+            <div class="stat">New Users This Month: {{ newUsersThisMonth }}</div>
+        </div>
+    </div>
+
+    <div class="dashboard-section">
+        <h2 class="dashboard-section-title">Recent Activities</h2>
+        <div class="activities">
+            <div class="activity">
+                <h3>Recent Users</h3>
+                <ul>
+                    {% for user in recentUsers %}
+                        <li>{{ user.username }} - {{ user.createdAt|date('Y-m-d H:i') }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="activity">
+                <h3>Recent Products</h3>
+                <ul>
+                    {% for product in recentProducts %}
+                        <li>{{ product.title }} - {{ product.createdAt|date('Y-m-d H:i') }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="activity">
+                <h3>Recent Events</h3>
+                <ul>
+                    {% for event in recentEvents %}
+                        <li>{{ event.title }} - {{ event.createdAt|date('Y-m-d H:i') }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

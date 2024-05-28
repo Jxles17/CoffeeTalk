@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} event : {{event.title}}{% endblock %}
+
+{% block body %}
+    <h1>{{event.title}}</h1>
+
+    <p>{{event.description | nl2br}}</p>
+    
+{% endblock %}

@@ -5,68 +5,77 @@
 {% block body %}
 <style>
     @font-face {
-        font-family: 'Beckman'; /* Nom de la police */
-        src: url('/fonts/Beckman.woff') format('woff'); /* Chemin vers le fichier de police */
-        /* Autres formats de police si nécessaire */
+        font-family: 'Beckman';
+        src: url('/fonts/Beckman.woff') format('woff');
     }
     .example-wrapper { margin: 1em auto; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    .input-compte{width: 30%;}
-    .compte{margin: 5% auto; align-items: center; justify-content: center; text-align: center;}
-    .compte h1{margin-bottom: 3%;}
-    .img-fidelite{border-radius:30px; position: relative; border: 5px solid;}
-    .carte-fidelite{position: absolute; width: 410px; height: 207px; border-radius:30px; top: 28.5%; left: 39.3%; padding: 1%}
+    .input-compte { width: 30%; }
+    .compte { margin: 5% auto; align-items: center; justify-content: center; text-align: center; }
+    .compte h1 { margin-bottom: 3%; }
+    .img-fidelite { border-radius: 30px; position: relative; border: 5px solid; }
+    .carte-fidelite { position: absolute; width: 410px; height: 207px; border-radius: 30px; top: 20.5%; left: 39.3%; padding: 1%; }
     .parent {
-    display: grid;
-    grid-template-columns: repeat(5, 0.2fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 50px;
-    grid-row-gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(5, 0.2fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 50px;
+        grid-row-gap: 10px;
     }
-    .carte-fidelite div{display: flex; align-items: center; justify-content: center}
-    .carte-fidelite div a{width: 100%; height: 30px; background-color: brown; border-radius: 50%; padding-top: 10%; font-family: "Beckman";}
-    .carte-fidelite .croix {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    text-decoration: none;
-     color: #EFDFD5;
-    background-color: #2f2421;
-    transform : rotate(-30deg);
+    .carte-fidelite div { display: flex; align-items: center; justify-content: center; }
+    .carte-fidelite div a {
+        width: 100%;
+        height: 30px;
+        background-color: brown;
+        border-radius: 50%;
+        padding-top: 10%;
+        font-family: "Beckman";
+        text-decoration: none;
+        color: #EFDFD5;
+        background-color: #2f2421;
+        transform: rotate(-30deg);
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
     }
-    .croix:hover{text-decoration: none;}
-    .carte-fidelite .croix.visible {
+    .croix.visible {
         opacity: 1;
     }
-    .container{max-width: 1920px!important; padding: 0;}
+    .container { max-width: 1920px !important; padding: 0; }
+    .mt { margin-top: 5%; }
 </style>
 
 <div class="example-wrapper">
-    
     <div class="compte">
-    <h1>Mon compte</h1>
+        <h1>Mon compte</h1>
 
-    <img src="/cafe-fidelite.jpg" class="img-fidelite">
-    <div class="carte-fidelite"></div>
-    <div class="parent carte-fidelite">
-        <div class="div1"><a class="croix">CF</a></div>
-        <div class="div2"><a class="croix">CF</a></div>
-        <div class="div3"><a class="croix">CF</a></div>
-        <div class="div4"><a class="croix">CF</a></div>
-        <div class="div5"><a class="croix">CF</a></div>
-        <div class="div6"><a class="croix">CF</a></div>
-        <div class="div7"><a class="croix">CF</a></div>
-        <div class="div8"><a class="croix">CF</a></div>
-        <div class="div9"><a class="croix">CF</a></div>
-        <div class="div10"><a class="croix">CF</a></div>
+        <img src="/cafe-fidelite.jpg" class="img-fidelite">
+        <div class="carte-fidelite"></div>
+        <div class="parent carte-fidelite">
+            <div class="div1"><a class="croix">CF</a></div>
+            <div class="div2"><a class="croix">CF</a></div>
+            <div class="div3"><a class="croix">CF</a></div>
+            <div class="div4"><a class="croix">CF</a></div>
+            <div class="div5"><a class="croix">CF</a></div>
+            <div class="div6"><a class="croix">CF</a></div>
+            <div class="div7"><a class="croix">CF</a></div>
+            <div class="div8"><a class="croix">CF</a></div>
+            <div class="div9"><a class="croix">CF</a></div>
+            <div class="div10"><a class="croix">CF</a></div>
+        </div>
+        <p class="mt">Vous avez actuellement : {{ app.user.loyaltyPoints }} points de fidélité </p>
     </div>
-    {# <img src="{{ qr_code_path }}" alt="Code QR"> #}
-</div>
 
     <script>
-    document.querySelectorAll('.parent .croix').forEach(croix => {
-        croix.addEventListener('click', () => {
-            croix.classList.add('visible');
+        document.addEventListener('DOMContentLoaded', function() {
+            let points = {{ app.user.loyaltyPoints }};
+            let croixElements = document.querySelectorAll('.parent .croix');
+
+            croixElements.forEach((croix, index) => {
+                if (points >= (index + 1) * 10) {
+                    croix.classList.add('visible');
+                }
+            });
         });
-    });
-</script>
+    </script>
+</div>
 {% endblock %}

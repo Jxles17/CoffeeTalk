@@ -8,6 +8,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
+use DateTime;
 
 /**
  * @extends ServiceEntityRepository<User>
@@ -47,6 +48,46 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
                 ->setMaxResults(1)
                 ->getQuery()
                 ->getSingleResult();
+    }
+
+    public function countNewUsersThisMonth()
+    {
+        $qb = $this->createQueryBuilder('u')
+            ->select('COUNT(u.id)')
+            ->where('u.createdAt >= :startOfMonth')
+            ->setParameter('startOfMonth', new \DateTime('first day of this month'));
+
+        return $qb->getQuery()->getSingleScalarResult();
+    }
+
+    public function findUserTransactionsAfterDate(int $userId, DateTime $date): array
+    {
+        return $this->createQueryBuilder('l')
+            ->andWhere('l.user = :userId')
+            ->andWhere('l.createdAt >= :date')
+            ->setParameter('userId', $userId)
+            ->setParameter('date', $date)
+            ->orderBy('l.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function findUsernameAndEmail(): array
+    {
+        $qb = $this->createQueryBuilder('u')
+                ->select('u.username, u.email, u.loyaltyPoints');
+        return $qb->getQuery()->getResult();
+    }
+
+    public function findBySearch( string $search): array
+    {
+        $qb = $this->createQueryBuilder('u')
+                ->select('u.username, u.email, u.loyaltyPoints');
+        if($search){
+            $qb->where('u.username LIKE :search OR u.email LIKE :search')
+                ->setParameter('search', '%' . $search . '%');
+        }
+        return $qb->getQuery()->getResult();
     }
     //    /**
     //     * @return User[] Returns an array of User objects

@@ -32,7 +32,11 @@
         .navbar-nav {
             justify-content: space-evenly;
             width: 100%;
-            padding: 0% 25% 0% 0%;
+        }
+        .navbar-nav .footer-social{
+            justify-content: left;
+            width: 20%;
+            padding-top: 1%;
         }
         .form-inline{
             display: flex;
@@ -98,18 +102,34 @@
         top: 0;
         z-index: 1000;
         }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #B86D47;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
 
+        .btn:hover {
+            background-color: #0056b3;
+        }
         .navbar.scrolled {
         background-color: #B86D47!important;
         }
         .container{margin-top: 5%}
-        .footer{display: flex; width: 100%; background-color: #714423!important}
+        .footer{display: flex; width: 100%; background-color: #714423!important; padding-top:2%;} 
         .footer-logo, .footer-pages, .footer-social{width: 100%}
         .footer-logo h1{text-align: center;}
         .footer-pages ul li a{text-decoration: none; color: white;}
         .footer-social, .footer-pages{display: flex; justify-content: center}
+        .footer-pages{flex-direction: column; width: 50%; margin-left: 10%; }
         .fa-brands{margin: 2%}
         .sf-toolbar{background-color: #714423!important}
+        li { padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
         </style>
         {% endblock %}
 
@@ -154,14 +174,24 @@
           </ul>
         </li>
         <li class="nav-item">
+            <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/events">Evenements</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/reward">Fidélité</a>
         </li>
-        <button class="buttonreserv" type="button"><a class="acontact" href="/contact">Réservation</a></button>
+        <li class="nav-item">
+            <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/contact">Réservation</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/account">
                 <i class="fas fa-user-circle"></i>
             </a>
         </li>
+        <div class="footer-social">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-x-twitter">X</i>
+            <i class="fa-brands fa-facebook-f"></i>
+        </div>
         </ul>
     </div>
     </nav>
@@ -173,7 +203,7 @@
     <div class="banniere-bas-page">
         <h3>REJOIGNEZ LA COMMUNAUTÉ DU CAFÉ</h3>
         <p>Abonnez-vous maintenant pour recevoir des offres exclusives, des dates et des nouvelles privilégiées du monde de Coffee Talk.</p>
-        <button class="button" type="button"><a class="abtnhome" href="/menu">Learn more</a></button>
+        <button class="btn" type="button"><a class="abtnhome" href="/account">En savoir plus</a></button>
     </div>
     </body>
     <footer class="footer">

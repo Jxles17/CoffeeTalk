@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Produit;
+use App\Entity\User;
 use App\Form\ProduitType;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -84,5 +85,6 @@ class ProduitController extends AbstractController
         $this->addFlash('success', 'Le produit a bien été supprimé');
         return $this->redirectToRoute('produit.index');
     }
+
     
 }

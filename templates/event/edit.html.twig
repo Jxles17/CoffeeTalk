@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} event : {{event.title}}{% endblock %}
+
+
+{% block body %}
+<style>
+    #event_save{margin: 2% 0 10% 0}
+</style>
+
+    <h1>{{event.title}}</h1>
+
+    <p>{{ form(form)}}</p>
+    
+{% endblock %}

@@ -1,0 +1,42 @@
+{# templates/user/add_loyalty_points.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter des points de fidélité{% endblock %}
+
+{% block body %}
+<style>
+ul { list-style-type: none; padding: 0; }
+li { padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
+.user-info { flex-grow: 1; }
+.add-points-form { display: flex; align-items: center; }
+</style>
+
+<h1>Liste des utilisateurs</h1>
+<form method="get" action="{{ path('user_list') }}">
+    <input type="text" name="search" placeholder="Rechercher par nom ou email" value="{{ app.request.query.get('search') }}">
+    <button type="submit">Rechercher</button>
+</form>
+<ul>
+    <li>
+        <div class="user-info"><strong>Username</strong></div>
+        <div class="user-info"><strong>Email</strong></div>
+        <div class="user-info"><strong>Points de fidélité</strong></div>
+        <div class="user-info"><strong>Action</strong></div>
+    </li>
+    {% for user in users %}
+        <li>
+            <div class="user-info">{{ user.username }}</div>
+            <div class="user-info">{{ user.email }}</div>
+            <div class="user-info">{{ user.loyaltyPoints }}</div>
+            <div class="user-info">
+                <form action="{{ path('add_loyalty_points') }}" method="post" class="add-points-form">
+                    <input type="hidden" name="email" value="{{ user.email }}">
+                    <input type="number" name="points" min="1" value="1" required>
+                    <button type="submit">Ajouter</button>
+                </form>
+            </div>
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}

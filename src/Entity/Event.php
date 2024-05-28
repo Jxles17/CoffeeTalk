@@ -4,7 +4,10 @@ namespace App\Entity;
 
 use App\Repository\EventRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
+#[HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: EventRepository::class)]
 class Event
 {
@@ -16,14 +19,20 @@ class Event
     #[ORM\Column(length: 255)]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $datetime = null;
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTime $datetime = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $registration = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageFilename = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTime $createdAt;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTime $updatedAt;
 
     public function getId(): ?int
     {
@@ -42,15 +51,14 @@ class Event
         return $this;
     }
 
-    public function getDatetime(): ?string
+    public function getDatetime(): ?DateTime
     {
         return $this->datetime;
     }
 
-    public function setDatetime(string $datetime): static
+    public function setDatetime(DateTime $datetime): self
     {
         $this->datetime = $datetime;
-
         return $this;
     }
 
@@ -59,22 +67,49 @@ class Event
         return $this->description;
     }
 
-    public function setDescription(string $description): static
+    public function setDescription(string $description): self
     {
         $this->description = $description;
-
         return $this;
     }
 
-    public function getRegistration(): ?string
+    public function getImageFilename(): ?string
     {
-        return $this->registration;
+        return $this->imageFilename;
     }
 
-    public function setRegistration(string $registration): static
+    public function setImageFilename(?string $imageFilename): self
     {
-        $this->registration = $registration;
+        $this->imageFilename = $imageFilename;
+        return $this;
+    }
 
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        $this->createdAt = new DateTime();
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }

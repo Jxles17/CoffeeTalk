@@ -1,9 +1,11 @@
 <?php
 
+// src/Entity/Produit.php
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use DateTime;
 
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
 class Produit
@@ -19,8 +21,14 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'float')]
     private ?float $price = null;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTime $createdAt;
+
+    #[ORM\Column(type: 'datetime')]
+    private ?DateTime $updatedAt;
 
     public function getId(): ?int
     {
@@ -60,6 +68,28 @@ class Produit
     {
         $this->price = $price;
 
+        return $this;
+    }
+
+    public function getCreatedAt(): ?DateTime
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
         return $this;
     }
 }
