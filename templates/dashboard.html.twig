@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Admin Dashboard{% endblock %}
+{% block title %}Tableau de bord administrateur{% endblock %}
 
 {% block body %}
 <style>
@@ -65,29 +65,29 @@
 </style>
 
 <div class="dashboard-container">
-    <h1 class="dashboard-title">Admin Dashboard</h1>
+    <h1 class="dashboard-title">Tableau de bord administrateur</h1>
 
     <div class="dashboard-buttons">
-        <a href="{{ path('event.index') }}" class="dashboard-button">Manage Events</a>
-        <a href="{{ path('produit.index') }}" class="dashboard-button">Manage Products</a>
-        <a href="{{ path('add_loyalty_points') }}" class="dashboard-button">Manage Loyalty Points</a>
+        <a href="{{ path('event.index') }}" class="dashboard-button">Gérer les événements</a>
+        <a href="{{ path('produit.index') }}" class="dashboard-button">Gérer les produits</a>
+        <a href="{{ path('add_loyalty_points') }}" class="dashboard-button">Gérer les points de fidélité</a>
     </div>
 
     <div class="dashboard-section">
-        <h2 class="dashboard-section-title">Statistics</h2>
+        <h2 class="dashboard-section-title">Statistiques</h2>
         <div class="statistics">
-            <div class="stat">Total Users: {{ totalUsers }}</div>
-            <div class="stat">Total Products: {{ totalProducts }}</div>
-            <div class="stat">Total Events: {{ totalEvents }}</div>
-            <div class="stat">New Users This Month: {{ newUsersThisMonth }}</div>
+            <div class="stat">Utilisateurs totaux : {{ totalUsers }}</div>
+            <div class="stat">Produits totaux : {{ totalProducts }}</div>
+            <div class="stat">Événements totaux : {{ totalEvents }}</div>
+            <div class="stat">Nouveaux utilisateurs ce mois-ci : {{ newUsersThisMonth }}</div>
         </div>
     </div>
 
     <div class="dashboard-section">
-        <h2 class="dashboard-section-title">Recent Activities</h2>
+        <h2 class="dashboard-section-title">Activités récentes</h2>
         <div class="activities">
             <div class="activity">
-                <h3>Recent Users</h3>
+                <h3>Utilisateurs récents</h3>
                 <ul>
                     {% for user in recentUsers %}
                         <li>{{ user.username }} - {{ user.createdAt|date('Y-m-d H:i') }}</li>
@@ -95,7 +95,7 @@
                 </ul>
             </div>
             <div class="activity">
-                <h3>Recent Products</h3>
+                <h3>Produits récents</h3>
                 <ul>
                     {% for product in recentProducts %}
                         <li>{{ product.title }} - {{ product.createdAt|date('Y-m-d H:i') }}</li>
@@ -103,7 +103,7 @@
                 </ul>
             </div>
             <div class="activity">
-                <h3>Recent Events</h3>
+                <h3>Événements récents</h3>
                 <ul>
                     {% for event in recentEvents %}
                         <li>{{ event.title }} - {{ event.createdAt|date('Y-m-d H:i') }}</li>

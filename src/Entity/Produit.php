@@ -76,10 +76,17 @@ class Produit
         return $this->createdAt;
     }
 
-    public function setCreatedAt(DateTime $createdAt): self
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
     {
-        $this->createdAt = $createdAt;
-        return $this;
+        $this->createdAt = new DateTime();
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function setUpdatedAtValue(): void
+    {
+        $this->updatedAt = new DateTime();
     }
 
     public function getUpdatedAt(): ?DateTime

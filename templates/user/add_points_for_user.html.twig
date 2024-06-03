@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter des points de fidélité{% endblock %}
+
+{% block body %}
+    <h1>Ajouter des points de fidélité pour {{ user.username }}</h1>
+
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% for message in app.flashes('error') %}
+        <div class="alert alert-danger">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    <p>Nombre de points de fidélité de l'utilisateur : {{ user.loyaltyPoints }}</p>
+
+    {{ form_start(form) }}
+        {{ form_row(form.points) }}
+    {{ form_end(form) }}
+{% endblock %}
