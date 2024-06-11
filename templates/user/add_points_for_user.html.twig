@@ -3,22 +3,98 @@
 {% block title %}Ajouter des points de fidélité{% endblock %}
 
 {% block body %}
-    <h1>Ajouter des points de fidélité pour {{ user.username }}</h1>
+<style>
+.icon-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    margin: 5% auto;
+}
+.icon {
+    text-align: center;
+}
+.icon svg {
+    width: 64px;
+    height: 64px;
+    fill: currentColor;
+    cursor: pointer;
+    color: #FFE3B9;
+}
+.icon a {
+    color: #FFE3B9;
+    text-decoration: none;
+}
+.mb-3 {}
+</style>
 
-    {% for message in app.flashes('success') %}
-        <div class="alert alert-success">
-            {{ message }}
-        </div>
-    {% endfor %}
-    {% for message in app.flashes('error') %}
-        <div class="alert alert-danger">
-            {{ message }}
-        </div>
-    {% endfor %}
+<head>
+    <!-- Other head elements -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
 
-    <p>Nombre de points de fidélité de l'utilisateur : {{ user.loyaltyPoints }}</p>
 
-    {{ form_start(form) }}
-        {{ form_row(form.points) }}
-    {{ form_end(form) }}
+<h1>Ajouter des points de fidélité pour {{ user.username }}</h1>
+
+<div class="icon-container">
+    <div class="icon">
+    <a href="{{ path('add_loyalty_points_food', {'id': user.id}) }}">
+        <span class="material-icons">restaurant</span>
+        <p>Nourriture</p>
+    </a>
+</div>
+<div class="icon">
+    <a href="{{ path('add_loyalty_points_drink', {'id': user.id}) }}">
+        <span class="material-icons">local_cafe</span>
+        <p>Boisson</p>
+    </a>
+</div>
+<div class="icon">
+    <a href="{{ path('add_loyalty_points_menu', {'id': user.id}) }}">
+        <span class="material-icons">menu_book</span>
+        <p>Menu</p>
+    </a>
+</div>
+<div class="icon">
+    <a href="{{ path('add_loyalty_points_vip', {'id': user.id}) }}">
+        <span class="material-icons">star</span>
+        <p>VIP</p>
+    </a>
+</div>
+</div>
+
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success flash">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger flash">
+        {{ message }}
+    </div>
+{% endfor %}
+
+<p>Nombre de points de fidélité de l'utilisateur : {{ user.loyaltyPoints }}</p>
+
+{# Formulaire d'ajout/déduction de points de fidélité #}
+{{ form_start(form) }}
+    {{ form_row(form.points) }}
+    <input type="hidden" name="action" value="add"> <!-- Champ caché pour l'action "add" -->
+{{ form_end(form) }}
+
+{% block javascript %}
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Sélectionner tous les éléments avec la classe 'flash'
+        var alerts = document.querySelectorAll('.flash');
+
+        // Parcourir chaque alerte
+        alerts.forEach(function (alert) {
+            // Disparaître après 5 secondes (5000 millisecondes)
+            setTimeout(function () {
+                alert.style.display = 'none';
+            }, 5000);
+        });
+    });
+</script>
+{% endblock %}
 {% endblock %}

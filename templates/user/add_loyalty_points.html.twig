@@ -6,13 +6,9 @@
 <style>
 ul { list-style-type: none; padding: 0; }
 li { padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
-.user-info { flex-grow: 1;}
-.add-points-form { display: flex; align-items: center; justify-content: center;}
-.eye-icon {
-    margin-left: 10px;
-    cursor: pointer;
-}
-.add-points-form button{}
+.user-info { flex-grow: 1; }
+.add-points-form { display: flex; align-items: center; justify-content: center; }
+.eye-icon { margin-left: 10px; cursor: pointer; }
 </style>
 
 <h1>Liste des utilisateurs</h1>
@@ -47,7 +43,7 @@ li { padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-conten
                     <input type="hidden" name="action" value="add">
                     <button type="submit" class="btn">Ajouter</button>
                 </form>
-                <form action="{{ path('add_loyalty_points') }}" method="post" class="add-points-form" >
+                <form action="{{ path('add_loyalty_points') }}" method="post" class="add-points-form">
                     <input type="hidden" name="email" value="{{ user.email }}">
                     <input type="number" name="points" min="1" value="1" required>
                     <input type="hidden" name="action" value="deduct">

@@ -12,8 +12,9 @@ use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 
 #[HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+#[UniqueEntity(fields: ['username'], message: 'Un compte avec ce nom d\'utilisateur existe déjà')]
+#[UniqueEntity(fields: ['email'], message: 'Un compte avec cette adresse email existe déjà')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]

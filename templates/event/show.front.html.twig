@@ -1,0 +1,59 @@
+{# templates/event/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ event.title }}{% endblock %}
+
+{% block body %}
+<style>
+    .event-detail {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+    }
+    .event-detail p{
+        color: #FFE3B9;
+        font-size: 130%;
+    }
+    .event-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    .event-title {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    .event-date {
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .event-description {
+        font-size: 1em;
+        color: #333;
+    }
+</style>
+
+<div class="event-detail">
+    <img src="{{ asset('uploads/events/' ~ event.imageFilename) }}" alt="{{ event.title }}" class="event-image">
+    <h1 class="event-title">{{ event.title }}</h1>
+    <p class="event-date">{{ event.datetime|date('d F Y H:i')|replace({
+                        'January': 'janvier',
+                        'February': 'février',
+                        'March': 'mars',
+                        'April': 'avril',
+                        'May': 'mai',
+                        'June': 'juin',
+                        'July': 'juillet',
+                        'August': 'août',
+                        'September': 'septembre',
+                        'October': 'octobre',
+                        'November': 'novembre',
+                        'December': 'décembre'
+                    }) }}</p> 
+    <p class="event-description">{{ event.description }}</p>
+</div>
+{% endblock %}

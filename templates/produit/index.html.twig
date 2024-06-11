@@ -4,47 +4,96 @@
 
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    th,
-    td {
-    border: 1px solid rgb(160 160 160);
-    padding: 8px 10px;
+    .products-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    .header-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .header-section h1 {
+        margin: 0;
+    }
+    .header-section .btn {
+        padding: 10px 20px;
+        background-color: #B86D47;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    .header-section .btn:hover {
+        background-color: #0056b3;
+    }
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    .table th, .table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    .table th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+    .table tr:hover {
+        background-color: #f1f1f1;
+    }
+    .table .btn {
+        padding: 5px 10px;
+        margin: 0 5px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    .table .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+    .table .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    .table .btn-danger {
+        background-color: #dc3545;
+        color: white;
+    }
+    .table .btn-danger:hover {
+        background-color: #c82333;
     }
 </style>
 
-<div class="example-wrapper">
-    <h1>Gestion des produits</h1>
+<div class="products-wrapper">
+    <div class="header-section">
+        <h1>Gestion des produits</h1>
+        <a class="btn btn-primary" href="{{ path('produit.create') }}">Créer un produit</a>
+    </div>
 
-    <a class="btn btn-primary" href="{{path ('produit.create')}}">Créer un produit</a>
-
-    <table ="table">
+    <table class="table">
         <thead>
             <tr>
                 <th>Titre</th>
                 <th>Actions</th>
             </tr>
         </thead>
-        <body>
-                {% for produit in produits %}
+        <tbody>
+            {% for produit in produits %}
                 <tr>
                     <td>
-                    <a class="produit" href="{{ path('produit.show', {id: produit.id}) }}">{{ produit.title }}</a>
+                        <a href="{{ path('produit.show', {id: produit.id}) }}">{{ produit.title }}</a>
                     </td>
                     <td>
-                    <a class="btn btn-primary btn-sm" href="{{path ('produit.edit', {id: produit.id}) }}">Modifier</a>
-                    </td>
-                    <td>
-                    <form action="{{path ('produit.delete', {id: produit.id}) }}" method ="post">
-                        <input type="hidden" name="_method" value="DELETE"></input>
-                        <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
-                    </form>
+                        <a class="btn btn-primary btn-sm" href="{{ path('produit.edit', {id: produit.id}) }}">Modifier</a>
+                        <form action="{{ path('produit.delete', {id: produit.id}) }}" method="post" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button class="btn btn-danger btn-sm" type="submit">Supprimer</button>
+                        </form>
                     </td>
                 </tr>
-                {% endfor %}
-        </body>
+            {% endfor %}
+        </tbody>
     </table>
-
-
 </div>
 {% endblock %}

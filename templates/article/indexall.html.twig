@@ -1,0 +1,109 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos articles{% endblock %}
+
+{% block body %}
+<style>
+    .container{
+        width: 100%!important;
+        max-width: 100%;
+        padding: 0;
+    }
+    .container h1{text-align:center; margin-top: 20%; margin-bottom: 27%;}
+        .arrow-container {
+        position: absolute;
+        bottom: 15%;
+        left: 48%;
+        font-size: 4em;
+        }
+    .articles-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        background-color: #642B23; /* Ajoutez ici la couleur de fond que vous utilisez pour la section des articles */
+        padding: 2% 15%; /* Ajoutez un peu de padding pour éviter que le contenu ne colle aux bords */
+        border-radius: 5px; /* Ajoutez des coins arrondis si nécessaire */
+        z-index: 1; /* Assurez-vous que cette section soit au-dessus de l'image de fond */
+    }
+    .article-card {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: transform 0.2s;
+        border-radius: 5%;
+        background-color: #FFE3B9; /* Couleur de fond pour chaque carte d'article */
+    }
+    .article-card:hover {
+        transform: translateY(-10px);
+    }
+    .article-card a{
+        text-decoration: none;
+        color: white;
+    }
+    .article-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-radius: 20px;
+    }
+    .article-content {
+        padding: 15px;
+    }
+    .article-title {
+        font-size: 1.5em;
+        margin-bottom: 10px;
+        color: #34140D; /* Couleur du titre */
+    }
+    .article-date {
+        font-size: 1em;
+        color: #34140D; /* Couleur de la date */
+        margin-bottom: 10px;
+    }
+    .article-description {
+        font-size: 1em;
+        color: #34140D; /* Couleur de la description */
+    }
+    .background-image-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+    }
+</style>
+
+<div class="background-image-container">
+    <img src="/evenement.jpg" alt="Background Image" class="background-image">
+</div>
+<div>
+    <h1>Evenements</h1>
+    <div class="arrow-container">
+        <i class="fas fa-chevron-circle-down arrow"></i>
+    </div>
+</div>
+<div class="articles-wrapper">
+    {% for article in articles %}
+        <div class="article-card">
+            <a href="{{ path('article_show_front', {id: article.id}) }}">
+                <img src="{{ asset('uploads/articles/' ~ article.imageFilename) }}" alt="{{ article.title }}" class="article-image">
+                <div class="article-content">
+                    <h2 class="article-title">{{ article.title }}</h2>
+                    <p class="article-description">{{ article.description }}</p>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

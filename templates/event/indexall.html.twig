@@ -4,54 +4,146 @@
 
 {% block body %}
 <style>
+    .container{
+        width: 100%!important;
+        max-width: 100%;
+        padding: 0;
+    }
+    .container h1{text-align:center; margin-top: 18%; margin-bottom: 23%; font-size: 350%;}
+    .arrow-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .arrow {
+            font-size: 3em; /* Taille agrandie de la flèche */
+            color: #FFE3B9; /* Couleur de la flèche */
+        }
     .events-wrapper {
-        max-width: 1200px;
+        margin-top: 5%!important;
+        width: 100%;
         margin: 0 auto;
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
+        background-color: #642B23; /* Ajoutez ici la couleur de fond que vous utilisez pour la section des événements */
+        padding: 2% 15%; /* Ajoutez un peu de padding pour éviter que le contenu ne colle aux bords */
+        border-radius: 5px; /* Ajoutez des coins arrondis si nécessaire */
+        z-index: 1; /* Assurez-vous que cette section soit au-dessus de l'image de fond */
     }
     .event-card {
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         transition: transform 0.2s;
-        border-radius: 5%;
+        background-color: transparent; /* Couleur de fond pour chaque carte d'événement */
+        display: flex;
+        flex-direction: column;
     }
     .event-card:hover {
         transform: translateY(-10px);
+    }
+    .event-card a{
+        text-decoration: none;
+        color: white;
     }
     .event-image {
         width: 100%;
         height: 200px;
         object-fit: cover;
-        border-radius: 20px;
+        border-radius: 30px;
     }
     .event-content {
         padding: 15px;
     }
+    .event-content h2{
+        margin-bottom: 5%;
+    }
+    .event-content h2, .event-content p{
+        color: #FFE3B9;
+    }
     .event-title {
         font-size: 1.5em;
         margin-bottom: 10px;
+        color: #34140D; /* Couleur du titre */
+        font-weight: bold;
+        margin-bottom: 5%;
     }
     .event-date {
         font-size: 1em;
-        color: #fff;
-        margin-bottom: 10px;
+        color: #34140D; /* Couleur de la date */
     }
     .event-description {
         font-size: 1em;
-        color: #fff;
+        color: #34140D; /* Couleur de la description */
+    }
+    .background-image-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        overflow: hidden;
+    }
+
+    .background-image {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        z-index: -1;
+        filter: brightness(60%);
+    }
+    .read-more-button {
+        align-self: flex-end;
+        margin-top: auto;
+        padding: 10px 20px;
+        background-color: #B86D47;
+        color: #FFE3B9;
+        border: solid #B86D47;
+        border-radius: 5px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .read-more-button:hover {
+        background-color: #0056b3;
     }
 </style>
 
+<div class="background-image-container">
+    <img src="/evenement.jpg" alt="Background Image" class="background-image">
+</div>
+<div>
+    <h1>Evenements</h1>
+    <div class="arrow-container">
+        <i class="fas fa-chevron-circle-down arrow"></i>
+    </div>
+</div>
 <div class="events-wrapper">
     {% for event in events %}
         <div class="event-card">
-            <img src="{{ asset('uploads/events/' ~ event.imageFilename) }}" alt="{{ event.title }}" class="event-image">
-            <div class="event-content">
-                <h2 class="event-title">{{ event.title }}</h2>
-                <p class="event-date">{{ event.datetime|date('Y-m-d H:i') }}</p>
-                <p class="event-description">{{ event.description }}</p>
-            </div>
+            <a href="{{ path('event_show_front', {id: event.id}) }}">
+                <img src="{{ asset('uploads/events/' ~ event.imageFilename) }}" alt="{{ event.title }}" class="event-image">
+                <div class="event-content">
+                    <p class="event-date">{{ event.datetime|date('d F Y H:i')|replace({
+                        'January': 'janvier',
+                        'February': 'février',
+                        'March': 'mars',
+                        'April': 'avril',
+                        'May': 'mai',
+                        'June': 'juin',
+                        'July': 'juillet',
+                        'August': 'août',
+                        'September': 'septembre',
+                        'October': 'octobre',
+                        'November': 'novembre',
+                        'December': 'décembre'
+                    }) }}</p> {# Formatage de la date avec le mois complet en français #}
+                    <h2 class="event-title">{{ event.title }}</h2>
+                    <a href="{{ path('event_show_front', {id: event.id}) }}" class="read-more-button">Lire la suite</a>
+                </div>
+            </a>
         </div>
     {% endfor %}
 </div>

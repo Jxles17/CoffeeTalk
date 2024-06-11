@@ -39,15 +39,13 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
-    public function findUserByEmailOrUsername(string $usernameOrEmail): ?User 
+    public function findUserByEmailOrUsername(string $identifier): ?User
     {
         return $this->createQueryBuilder('u')
-                ->where('u.email = :identifier')
-                ->orWhere('u.username = :identifier')
-                ->setParameter('identifier' , $usernameOrEmail)
-                ->setMaxResults(1)
-                ->getQuery()
-                ->getSingleResult();
+            ->where('u.email = :identifier OR u.username = :identifier')
+            ->setParameter('identifier', $identifier)
+            ->getQuery()
+            ->getOneOrNullResult();
     }
 
     public function countNewUsersThisMonth()
@@ -79,15 +77,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $qb->getQuery()->getResult();
     }
 
-    public function findBySearch( string $search): array
+    public function findBySearch(string $search): array
     {
-        $qb = $this->createQueryBuilder('u')
-                ->select('u.username, u.email, u.loyaltyPoints');
-        if($search){
-            $qb->where('u.username LIKE :search OR u.email LIKE :search')
-                ->setParameter('search', '%' . $search . '%');
-        }
-        return $qb->getQuery()->getResult();
+        return $this->createQueryBuilder('u')
+            ->where('u.username LIKE :search')
+            ->orWhere('u.email LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
+            ->getQuery()
+            ->getResult();
     }
     //    /**
     //     * @return User[] Returns an array of User objects

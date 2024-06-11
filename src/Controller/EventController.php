@@ -16,7 +16,7 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[IsGranted('ROLE_USER')]
+#[IsGranted('ROLE_ADMIN')]
 class EventController extends AbstractController
 {
     #[Route('/admin/events', name: 'event.index')]
@@ -128,5 +128,30 @@ class EventController extends AbstractController
     {
         $events = $repository->findAll();
         return $this->render('event/indexall.html.twig', compact('events'));
+    }
+
+    #[Route('/events/{id}', name: 'event_show_front')]
+    public function showFront(Event $event): Response
+    {
+        return $this->render('event/show.front.html.twig', [
+            'event' => $event,
+        ]);
+    }
+
+    #[Route('/events/inscription/{id}', name: 'event_register', requirements: ['id' => '\d+'])]
+    public function inscription(int $id, EventRepository $eventRepository): Response
+    {
+        // Récupérer l'entité Event par son ID
+        $event = $eventRepository->find($id);
+
+        // Si l'événement n'existe pas, lancer une exception 404
+        if (!$event) {
+            throw $this->createNotFoundException('No event found for id ' . $id);
+        }
+
+        // Rendre le template avec les données de l'événement
+        return $this->render('event/inscription.html.twig', [
+            'event' => $event,
+        ]);
     }
 }

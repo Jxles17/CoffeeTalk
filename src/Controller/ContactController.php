@@ -21,9 +21,9 @@ class ContactController extends AbstractController
 
 
         // TO DO SUPPRIMEZ CA
-        $data->name = 'John Doe';
-        $data->email = 'john@gmail.fr';
-        $data->message = 'super site';
+        // $data->name = 'John Doe';
+        // $data->email = 'john@gmail.fr';
+        // $data->message = 'super site';
 
 
         

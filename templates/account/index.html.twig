@@ -46,6 +46,7 @@
     margin: auto;
     display:flex;
     justify-content:center;}
+    .aligncenter{text-align:center; display: flex; justify-content: center;}
 </style>
 
 <div class="example-wrapper">
@@ -69,7 +70,8 @@
         <p class="mt">Vous avez actuellement : {{ app.user.loyaltyPoints }} points de fidélité </p>
     </div>
     {% if 'ROLE_ADMIN' in app.user.roles %}
-            <a href="{{ path('admin_dashboard') }}" class="btn btn-primary btn-center">Dashboard</a>
+            <h1 class="aligncenter">Accéder au tableau de bord administrateur</h1>
+            <a href="{{ path('admin_dashboard') }}" class="btn btn-primary btn-center">Tableau de bord</a>
     {% endif %}
 
     <script>

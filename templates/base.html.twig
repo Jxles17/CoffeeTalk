@@ -130,16 +130,18 @@
             background-color: #0056b3;
         }
         .container{margin-top: 5%}
-        .footer{display: flex; width: 100%; background-color: #642B23!important; padding-top:2%; color: #FFE3B9} 
-        .footer-logo, .footer-pages, .footer-social{width: 100%}
+        .footer{display: flex; width: 100%; background-color: #642B23!important; padding-top:2%; color: #FFE3B9}
+        .footer-logo{width: 50%} 
+        .footer-social, .footer-pages, .footer-legal{width: 30%;}
         .footer-logo h1{text-align: center;}
-        .footer-pages ul li a{text-decoration: none; color: white;}
+        .footer-pages ul li a, .footer-legal ul li a{text-decoration: none; color: white; margin: auto;}
         .footer-social, .footer-pages{display: flex; justify-content: center}
-        .footer-pages{flex-direction: column; width: 50%; margin-left: 10%; }
+        .footer-pages, .footer-legal{flex-direction: column; text-align: center;}
         .fa-brands{margin: 2%}
         .sf-toolbar{background-color: #714423!important}
         li { padding: 10px; border-bottom: 1px solid #ccc; display: flex; justify-content: space-between; align-items: center; }
         li a{color:#FFE3B9!important;}
+        .sf-toolbar{display: none!important;}
         </style>
         {% endblock %}
 
@@ -223,26 +225,35 @@
     </script>
     </body>
     <footer class="footer">
-    <!-- Partie avec le logo -->
-    <div class="footer-logo">
-        {# <img src="logo.png" alt="Logo CoffeeTalk"> #}
-        <h1>CoffeeTalk</h1>
-    </div>
-    <!-- Partie avec les différentes pages -->
-    <div class="footer-pages">
-        <h2>Nos pages</h2>
-        <ul>
-            <li><a href="#">Accueil</a></li>
-            <li><a href="#">À propos</a></li>
-            <li><a href="#">Événements</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-    <!-- Partie avec les logos des réseaux sociaux -->
-    <div class="footer-social">
-        <i class="fa-brands fa-instagram"></i>
-        <i class="fa-brands fa-x-twitter">X</i>
-        <i class="fa-brands fa-facebook-f"></i>
-    </div>
-    </footer>
+            <!-- Partie avec le logo -->
+            <div class="footer-logo">
+                <!-- Votre logo ou nom de l'entreprise -->
+                <h1>CoffeeTalk</h1>
+            </div>
+            <!-- Partie avec les différentes pages -->
+            <div class="footer-pages">
+                <h2>Nos pages</h2>
+                <ul>
+                    <li><a href="#">Accueil</a></li>
+                    <li><a href="#">À propos</a></li>
+                    <li><a href="#">Événements</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Mentions légales</a></li>
+                </ul>
+            </div>
+            <!-- Partie avec les liens vers les mentions légales et les CGU -->
+            <div class="footer-legal">
+                <h2>Mentions légales et CGU</h2>
+                <ul>
+                    <li><a href="/mentions-legales">Mentions légales</a></li>
+                </ul>
+            </div>
+            <!-- Partie avec les logos des réseaux sociaux -->
+            <div class="footer-social">
+                <!-- Vos liens vers les réseaux sociaux -->
+                <i class="fa-brands fa-instagram"></i>
+                <i class="fa-brands fa-x-twitter">X</i>
+                <i class="fa-brands fa-facebook-f"></i>
+            </div>
+        </footer>
 </html>

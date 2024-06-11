@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} article : {{article.title}}{% endblock %}
+
+
+{% block body %}
+<style>
+    #article_save{margin: 2% 0 10% 0}
+</style>
+
+    <h1>{{article.title}}</h1>
+
+    <p>{{ form(form)}}</p>
+    
+{% endblock %}

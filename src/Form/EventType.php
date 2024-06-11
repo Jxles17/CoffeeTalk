@@ -11,8 +11,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType; // Utilisez DateTimeType pour les dates et heures
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Validator\Constraints\File;
+use Eckinox\TinymceBundle\Form\Type\TinymceType;
 
 class EventType extends AbstractType
 {
@@ -22,11 +23,11 @@ class EventType extends AbstractType
             ->add('title', TextType::class, [
                 'label' => 'Nom de l\'évènement'
             ])
-            ->add('datetime', DateTimeType::class, [ // Utilisez DateTimeType
+            ->add('datetime', DateTimeType::class, [
                 'label' => 'Date de l\'évènement'
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description de l\'événement'
+                'label' => 'Description de l\'évènement'
             ])
             ->add('imageFilename', FileType::class, [
                 'label' => 'Image de l\'événement',
@@ -45,8 +46,7 @@ class EventType extends AbstractType
             ])
             ->add('save', SubmitType::class, [
                 'label' => 'Sauvegarder'
-            ])
-        ;
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

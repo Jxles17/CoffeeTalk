@@ -1,0 +1,46 @@
+{# templates/article/show.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block body %}
+<style>
+    .article-detail {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border-radius: 10px;
+    }
+    .article-detail p{
+        color: #FFE3B9;
+        font-size: 130%;
+    }
+    .article-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+    .article-title {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+    .article-date {
+        font-size: 1.2em;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .article-description {
+        font-size: 1em;
+        color: #333;
+    }
+</style>
+
+<div class="article-detail">
+    <img src="{{ asset('uploads/articles/' ~ article.imageFilename) }}" alt="{{ article.title }}" class="article-image">
+    <h1 class="article-title">{{ article.title }}</h1>
+    <p class="article-date">{{ article.datetime|date('d-m-Y H:i') }}</p>
+    <p class="article-description">{{ article.description }}</p>
+</div>
+{% endblock %}
