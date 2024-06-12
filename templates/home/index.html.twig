@@ -229,28 +229,36 @@
         }
         .btnarticle{text-decoration: none; color: #FFE3B9;}
 </style>
+        <!-- Modal pour les informations sur les données -->
         <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="dataModalLabel">Information sur les données</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Nous collectons et stockons vos informations de compte. Vous pouvez demander la suppression de vos données à tout moment.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                            </div>
-                        </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <!-- En-tête du modal -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="dataModalLabel">Information sur les données</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <!-- Corps du modal -->
+                    <div class="modal-body">
+                        <p>Nous collectons et stockons vos informations de compte. Vous pouvez demander la suppression de vos données à tout moment.</p>
+                    </div>
+                    <!-- Pied de page du modal -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
         </div>
-    <div class="background-video-container">
-        <video class="background-video" autoplay loop muted>
-            <source src="/videopres2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-    </div>
+
+        <!-- Conteneur pour la vidéo de fond -->
+        <div class="background-video-container">
+            <video class="background-video" autoplay loop muted>
+                <source src="/videopres2.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+        </div>
+
+        <!-- Section "Notre histoire" -->
         <div class="div-story">
             <div class="texte-story">
                 <h2>Nos derniers évènements</h2>
@@ -259,58 +267,62 @@
             </div>
         </div>
 
+        <!-- Conteneur sans arrière-plan pour les articles -->
         <div class="container-no-bg">
-        <div class="articles">
-            <div class="article-card">
-                <h3>Article 1</h3>
-                <img src="/cafe.jpg" class="photo-bas1">
-                <p>Description de l'article 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
+            <!-- Section des articles -->
+            <div class="articles">
+                <div class="article-card">
+                    <h3>Article 1</h3>
+                    <img src="/cafe.jpg" class="photo-bas1">
+                    <p>Description de l'article 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
+                </div>
+                <div class="article-card">
+                    <h3>Article 2</h3>
+                    <img src="/cafe.jpg" class="photo-bas1">
+                    <p>Description de l'article 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
+                </div>
             </div>
-            <div class="article-card">
-                
-                <h3>Article 2</h3>
-                <img src="/cafe.jpg" class="photo-bas1">
-                <p>Description de l'article 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
-            </div>
-        </div>
 
-        <div class="host">
-            <div class="content">
-                <img src="cafe-home2.jpg" alt="Your Image Description" style=" width: 48.5%;">
-                <div class="info">
-                    <h3>NOS BOISSONS DU MONDE</h3>
-                    <p>Nos cafés viennent du monde entier, découvrez d'où précisément !</p>
-                    <p>- Café 1 - Londres, Royaume-Uni</p>
-                    <p>- Café 2 - Paris, France</p>
-                    {# <button class="btn"><a href="/">En savoir plus</a></button> #}
+            <!-- Section "Nos boissons du monde" -->
+            <div class="host">
+                <div class="content">
+                    <img src="cafe-home2.jpg" alt="Your Image Description" style=" width: 48.5%;">
+                    <div class="info">
+                        <h3>NOS BOISSONS DU MONDE</h3>
+                        <p>Nos cafés viennent du monde entier, découvrez d'où précisément !</p>
+                        <p>- Café 1 - Londres, Royaume-Uni</p>
+                        <p>- Café 2 - Paris, France</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Conteneur pour la carte -->
+            <div id="map-container">
+                <div id="map"></div>
+            </div>
+
+            <!-- Section Instagram -->
+            <div class="instagram-section">
+                <h2>Suivez-nous sur Instagram</h2>
+                <div class="instagram-posts">
+                    <a href="https://www.instagram.com/p/C8AavOEMu-p/" target="_blank">
+                        <img src="instapost1.png" class="instasize" alt="Post 1">
+                    </a>
+                    <a href="https://www.instagram.com/p/C7_l5RBsNKE/" target="_blank">
+                        <img src="instapost2.png" class="instasize" alt="Post 2">
+                    </a>
+                    <a href="https://www.instagram.com/p/C7_JiwxM9-a/" target="_blank">
+                        <img src="instapost3.png" class="instasize" alt="Post 3">
+                    </a>
+                    <a href="https://www.instagram.com/p/C7_M9AdM_uA/" target="_blank">
+                        <img src="instapost4.png" class="instasize" alt="Post 4">
+                    </a>
                 </div>
             </div>
         </div>
-        <div id="map-container">
-            <div id="map"></div>
-        </div>
-        <div class="instagram-section">
-        <h2>Suivez-nous sur Instagram</h2>
-            <div class="instagram-posts">
-                <a href="https://www.instagram.com/p/C8AavOEMu-p/" target="_blank">
-                    <img src="instapost1.png" class="instasize" alt="Post 1">
-                </a>
-                <a href="https://www.instagram.com/p/C7_l5RBsNKE/" target="_blank">
-                    <img src="instapost2.png" class="instasize" alt="Post 2">
-                </a>
-                <a href="https://www.instagram.com/p/C7_JiwxM9-a/" target="_blank">
-                    <img src="instapost3.png" class="instasize" alt="Post 3">
-                </a>
-                <a href="https://www.instagram.com/p/C7_M9AdM_uA/" target="_blank">
-                    <img src="instapost4.png" class="instasize" alt="Post 4">
-                </a>
-            </div>
-        </div>
 
-        </div>
-    </div>
     
     <script>// Initialise la carte Leaflet
     var map = L.map("map").setView([0, 0], 2); // Centre la carte sur le monde entier avec un zoom de 2
