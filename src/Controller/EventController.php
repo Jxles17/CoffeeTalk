@@ -16,9 +16,10 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-#[IsGranted('ROLE_ADMIN')]
+
 class EventController extends AbstractController
 {
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/events', name: 'event.index')]
     public function index(EventRepository $repository): Response
     {
@@ -26,6 +27,7 @@ class EventController extends AbstractController
         return $this->render('event/index.html.twig', compact('events'));
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/events/{id}', name: 'event.show', requirements: ['id' => '\d+'])]
     public function show(Request $request, int $id, EventRepository $repository): Response
     {
@@ -35,6 +37,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/events/{id}/edit', name: 'event.edit', methods: ['GET', 'POST'])]
     public function edit(Event $event, Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
@@ -69,6 +72,7 @@ class EventController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/events/create', name: 'event.create')]
     public function create(Request $request, EntityManagerInterface $em, SluggerInterface $slugger): Response
     {
@@ -112,6 +116,7 @@ class EventController extends AbstractController
         ]);
     }
     
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/admin/events/{id}/delete', name: 'event.delete', methods: ['GET', 'POST', 'DELETE'])]
     public function delete(Request $request, EntityManagerInterface $em, EventRepository $eventRepository, $id): Response
     {
@@ -123,6 +128,7 @@ class EventController extends AbstractController
         return $this->redirectToRoute('event.index');
     }
 
+    
     #[Route('/events', name: 'event.all')]
     public function indexall(EventRepository $repository): Response
     {
