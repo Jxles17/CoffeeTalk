@@ -42,11 +42,9 @@
     }
     .container { max-width: 1920px !important; padding: 0; }
     .mt { margin-top: 5%; }
-    .btn-center{width: 10%;
-    margin: auto;
-    display:flex;
-    justify-content:center;}
-    .aligncenter{text-align:center; display: flex; justify-content: center;}
+    .btn-center{width: 10%; margin: auto; display: flex; justify-content: center;}
+    .aligncenter {text-align: center; display: flex; justify-content: center;}
+    .btn-modif{margin: 0 2%;}
 </style>
 
 <div class="example-wrapper">
@@ -68,10 +66,15 @@
             <div class="div10"><a class="croix">CF</a></div>
         </div>
         <p class="mt">Vous avez actuellement : {{ app.user.loyaltyPoints }} points de fidélité </p>
+        
+        <h2>Informations du compte</h2>
+        <p>Nom d'utilisateur : {{ app.user.username }}</p>
+        <p>Email : {{ app.user.email }} <a href="{{ path('app_account_change_email') }}" class="btn btn-modif btn-primary">Modifier l'email</a></p>
     </div>
+
     {% if 'ROLE_ADMIN' in app.user.roles %}
-            <h1 class="aligncenter">Accéder au tableau de bord administrateur</h1>
-            <a href="{{ path('admin_dashboard') }}" class="btn btn-primary btn-center">Tableau de bord</a>
+        <h1 class="aligncenter">Accéder au tableau de bord administrateur</h1>
+        <a href="{{ path('admin_dashboard') }}" class="btn btn-primary btn-center">Tableau de bord</a>
     {% endif %}
 
     <script>
