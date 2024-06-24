@@ -1,6 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}CoffeeTalk{% endblock %}
+{% block title %}CoffeeTalk - Café de spécialité et événements
+{% endblock %}
+
+{% block meta_description %}
+CoffeeTalk - Votre café de spécialité préféré pour se détendre et partager des moments agréables. Découvrez nos articles, événements et boissons du monde
+{% endblock %}
 
 {% block body %}
 </div>
@@ -209,10 +214,10 @@
             }
             .background-video {
             width: 100%;
-        }
-        .navbar-brand {
-            margin-left: 0%;
-        }
+            }
+            .navbar-brand {
+                margin-left: 0%;
+            }
         }
         .modal-header, .modal-body{color: #642B23!important;}
         .modal-dialog{margin: 15% auto;}
@@ -273,13 +278,13 @@
             <div class="articles">
                 <div class="article-card">
                     <h3>Article 1</h3>
-                    <img src="/cafe.jpg" class="photo-bas1">
+                    <img src="/cafe.jpg" class="photo-bas1" alt="Tasse de café">
                     <p>Description de l'article 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
                 </div>
                 <div class="article-card">
                     <h3>Article 2</h3>
-                    <img src="/cafe.jpg" class="photo-bas1">
+                    <img src="/cafe.jpg" class="photo-bas1" alt="Tasse de café">
                     <p>Description de l'article 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                     <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
                 </div>

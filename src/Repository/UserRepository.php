@@ -48,6 +48,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getOneOrNullResult();
     }
 
+    
+    public function findUsernameAndEmail(): array
+    {
+        $qb = $this->createQueryBuilder('u')
+                ->select('u.username, u.email, u.loyaltyPoints');
+        return $qb->getQuery()->getResult();
+    }
+
     public function countNewUsersThisMonth()
     {
         $qb = $this->createQueryBuilder('u')
@@ -56,25 +64,6 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->setParameter('startOfMonth', new \DateTime('first day of this month'));
 
         return $qb->getQuery()->getSingleScalarResult();
-    }
-
-    public function findUserTransactionsAfterDate(int $userId, DateTime $date): array
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.user = :userId')
-            ->andWhere('l.createdAt >= :date')
-            ->setParameter('userId', $userId)
-            ->setParameter('date', $date)
-            ->orderBy('l.createdAt', 'DESC')
-            ->getQuery()
-            ->getResult();
-    }
-
-    public function findUsernameAndEmail(): array
-    {
-        $qb = $this->createQueryBuilder('u')
-                ->select('u.username, u.email, u.loyaltyPoints');
-        return $qb->getQuery()->getResult();
     }
 
     public function findBySearch(string $search): array

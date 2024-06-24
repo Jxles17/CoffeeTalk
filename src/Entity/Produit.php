@@ -7,6 +7,7 @@ use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
 use DateTime;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: ProduitRepository::class)]
@@ -25,6 +26,10 @@ class Produit
 
     #[ORM\Column(type: 'float')]
     private ?float $price = null;
+
+    #[ORM\Column(length: 255)]
+    #[Assert\Choice(choices: ['boisson', 'tapas', 'dessert'], message: 'Choisissez une catégorie valide.')]
+    private ?string $categorie = null;
 
     #[ORM\Column(type: 'datetime')]
     private ?DateTime $createdAt;
@@ -69,6 +74,18 @@ class Produit
     public function setPrice(float $price): static
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCategorie(): ?string
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(string $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

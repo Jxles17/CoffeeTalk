@@ -4,21 +4,44 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\ProduitRepository;
-use App\Entity\Produit;
-use Doctrine\ORM\EntityManagerInterface;
 
 class MenuController extends AbstractController
 {
-    #[Route('/menu', name: 'app_menu')]
-    public function index(ProduitRepository $repository, EntityManagerInterface $em): Response
-    {   
-        $produits = $repository->findAll();
-        // $produits[0]->setTitle('Churoso');
-        // $em->flush();
+    #[Route('/menu-tapas', name: 'menu_tapas')]
+    public function menuTapas(ProduitRepository $produitRepository): Response
+    {
+        // Récupérer les produits avec la catégorie 'tapas'
+        $produits = $produitRepository->findBy(['categorie' => 'tapas']);
 
-        
-        return $this->render('menu/index.html.twig', compact('produits'));
+        return $this->render('menu/tapas.html.twig', [
+            'produits' => $produits,
+            'category' => 'Tapas',
+        ]);
+    }
+
+    #[Route('/menu-boisson', name: 'menu_boisson')]
+    public function menuBoissons(ProduitRepository $produitRepository): Response
+    {
+        // Récupérer les produits avec la catégorie 'boisson'
+        $produits = $produitRepository->findBy(['categorie' => 'boisson']);
+
+        return $this->render('menu/boisson.html.twig', [
+            'produits' => $produits,
+            'category' => 'Boissons',
+        ]);
+    }
+
+    #[Route('/menu-dessert', name: 'menu_dessert')]
+    public function menuDesserts(ProduitRepository $produitRepository): Response
+    {
+        // Récupérer les produits avec la catégorie 'dessert'
+        $produits = $produitRepository->findBy(['categorie' => 'dessert']);
+
+        return $this->render('menu/dessert.html.twig', [
+            'produits' => $produits,
+            'category' => 'Desserts',
+        ]);
     }
 }

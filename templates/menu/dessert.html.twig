@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dessert | CoffeeTalk{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .produit, .prix-produit{font-weight: bold}
+    .desc-produit{font-weight: 300; font-size: 90%}
+    .prix-produit{
+        display: flex;
+        justify-content: end;
+        margin-top: -5%;
+        }
+    .example-wrapper h1{margin-bottom:5%;}
+    p{font-size: 20px;}
+    .titre-menu{margin-top: 5%; margin-bottom: 3%}
+</style>
+
+<div class="example-wrapper">
+    <h1>Menu de la semaine</h1>
+
+    {% for produit in produits %}
+        <p class="produit">{{produit.title}}</p><p class="prix-produit">{{produit.price}}€</p>
+        <p class="desc-produit">{{produit.description}}</p>
+    {% endfor %}
+</div>
+
+    <h2 class="titre-menu">L'importance de la qualité du café et le rôle de CoffeeTalk</h2>
+    <p class="txt-menu">
+    
+    Le café est bien plus qu'une simple boisson pour de nombreuses personnes à travers le monde. C'est une expérience sensorielle, un rituel quotidien et même parfois une passion. Dans cette perspective, la qualité du café que nous consommons joue un rôle crucial dans notre satisfaction et notre bien-être général.</br>
+    </br>
+    Tout d'abord, la qualité du café influence directement son goût et son arôme. Un café de qualité supérieure offre une palette de saveurs riche et complexe, allant des notes subtiles de fruits et de fleurs aux arômes profonds et riches de chocolat et de noisette. La fraîcheur des grains de café et la manière dont ils sont torréfiés et préparés peuvent faire toute la différence dans la qualité de la tasse de café que nous dégustons.</br>
+    </br>
+    En outre, la qualité du café est étroitement liée à ses effets sur la santé et le bien-être. Des études ont montré que le café de qualité supérieure, consommé avec modération, peut offrir des avantages pour la santé, tels que la réduction du risque de certaines maladies, l'amélioration de la concentration et de la performance mentale, ainsi que l'apport d'antioxydants bénéfiques pour le corps.</br>
+    </br>
+    Dans ce contexte, CoffeeTalk joue un rôle essentiel en promouvant la qualité du café et en éduquant les consommateurs sur l'importance de choisir des cafés de haute qualité. En tant que plateforme dédiée aux amateurs de café, CoffeeTalk offre un espace où les passionnés peuvent découvrir et partager des informations sur les différentes variétés de café, les méthodes de torréfaction et de préparation, ainsi que les meilleures pratiques pour apprécier pleinement chaque tasse.</br>
+    </br>
+    En collaborant avec des producteurs de café de qualité, en soutenant les pratiques durables et équitables dans l'industrie du café, et en offrant une plateforme pour les entreprises qui partagent ces valeurs, CoffeeTalk s'engage à promouvoir une culture du café de haute qualité qui bénéficie à la fois aux consommateurs et aux producteurs.</br>
+    </br>
+    En conclusion, la qualité du café est un aspect crucial de l'expérience café. En encourageant la qualité et l'appréciation du café, CoffeeTalk contribue à enrichir la vie des amateurs de café à travers le monde et à soutenir une industrie du café plus durable et éthique.
+    </p>
+{% endblock %}

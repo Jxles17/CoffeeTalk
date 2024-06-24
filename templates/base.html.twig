@@ -10,6 +10,7 @@
             <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
             <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+            <meta name="description" content="{% block meta_description %}Default description{% endblock %}">
             {% block stylesheets %}
             <style>
             @font-face {
@@ -143,6 +144,11 @@
             li a{color:#FFE3B9!important;}
             .sf-toolbar{display: none!important;}
             .footer-social a{color: #FFE3B9; margin-left:3%;}
+            @media (min-width: 2px) and (max-width: 1023px) {
+            .carte-fidelite div a, .img-fidelite{
+                display: none;
+            }
+        }
             </style>
             {% endblock %}
 
@@ -182,8 +188,8 @@
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menus</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                <li><a class="dropdown-item" href="#">Boissons</a></li>
-                <li><a class="dropdown-item" href="/menu">Tapas</a></li>
+                <li><a class="dropdown-item" href="/menu-boisson">Boissons</a></li>
+                <li><a class="dropdown-item" href="/menu-dessert">Tapas</a></li>
             </ul>
             </li>
             <li class="nav-item">
