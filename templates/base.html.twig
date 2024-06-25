@@ -18,18 +18,21 @@
                 src: url('/fonts/playground.woff') format('woff'); /* Chemin vers votre fichier WOFF */
                 /* Vous pouvez également ajouter d'autres variantes de la police ici si nécessaire */
             }
-            body{
-                font-family: "Beckman", sans-serif;
+            body h1, body h2, body h3{
+                font-family: "Playground", sans-serif;
+            }
+            body p{
+                font-family: "Open-sens", sans-serif;
             }
             body{
-                background-color: #642B23!important;
-                color: #FFE3B9;
+                background-color: #FFE3B9!important;
+                color: #642B23;
             }
             .navbar{
                 background-color: transparent!important;
                 transition: background-color 0.8s ease; /* Ajouter la transition ici */
             }
-            .navbar.scrolled {
+            .navbar {
                 background-color: #642B23!important;
             }
             .navbar-brand, .nav-link{
@@ -41,7 +44,8 @@
             }
             .navbar-nav {
                 justify-content: space-evenly;
-                width: 100%;
+                width: 80%;
+                margin-left: auto;
             }
             .navbar-nav .footer-social{
                 justify-content: left;
@@ -55,6 +59,7 @@
             .navbar-brand{
                 margin-left: 2%;
                 font-size: 30px;
+                display:flex;
             }
             .banniere-bas-page{
                 width: 100%;
@@ -97,7 +102,7 @@
             font-size: 16px;
             }
             .button:hover{background-color: transparent;}
-            .navbar-brand{margin-left: 15%;}
+            .navbar-brand{margin-left: 15%; width: 4%;}
             .acontact{text-decoration: none; color: white;}
             .navbar-nav .nav-link.show {
                 color: white;
@@ -130,9 +135,9 @@
             .btn:hover {
                 background-color: #0056b3;
             }
-            .container{margin-top: 5%}
+            .container{margin-top: 10%}
             .footer{display: flex; width: 100%; background-color: #642B23!important; padding-top:2%; color: #FFE3B9}
-            .footer-logo{width: 50%} 
+            .footer-logo{width: 35%; margin-left: 10%;} 
             .footer-social, .footer-pages, .footer-legal{width: 30%;}
             .footer-logo h1{text-align: center;}
             .footer-pages ul li a, .footer-legal ul li a{text-decoration: none; color: white; margin: auto;}
@@ -144,11 +149,17 @@
             li a{color:#FFE3B9!important;}
             .sf-toolbar{display: none!important;}
             .footer-social a{color: #FFE3B9; margin-left:3%;}
+            .logo{width: 100%;}
+            .titre-logo{color: #FFE3B9; justify-content: center; align-content: center;flex-wrap: wrap; margin-right: 10%;}
             @media (min-width: 2px) and (max-width: 1023px) {
             .carte-fidelite div a, .img-fidelite{
                 display: none;
             }
-        }
+            .navbar-collapse{background-color: #642B23}
+            .nav-item{justify-content: center;}
+            .footer-social{display: none;}
+            .background-image{height: 30%!important;}
+            }
             </style>
             {% endblock %}
 
@@ -171,8 +182,8 @@
         <body>
         <!-- As a link -->
         <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">CoffeeTalk</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="/"><h2 class="titre-logo">CoffeeTalk</h2><img src="/logocoffeetalk2r.png" class="logo" alt="Tasse de café"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -185,6 +196,12 @@
                 <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="{{ path('app_login') }}">Connexion</a> #}
                 {% endif %}
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/">Nos cafés</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/events">Nos évènements</a>
+            </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Menus</a>
                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
@@ -192,14 +209,11 @@
                 <li><a class="dropdown-item" href="/menu-dessert">Tapas</a></li>
             </ul>
             </li>
-            <li class="nav-item">
-                <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/events">Evenements</a>
-            </li>
-            <li class="nav-item">
+            {# <li class="nav-item">
                 <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/reward">Fidélité</a>
-            </li>
+            </li> #}
             <li class="nav-item">
-                <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/contact">Réservation</a>
+                <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/contact">Qui-somme-nous ?</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{ app.current_route == 'home' ? 'active' : ''}}"  href="/account">
@@ -235,7 +249,7 @@
                 <!-- Partie avec le logo -->
                 <div class="footer-logo">
                     <!-- Votre logo ou nom de l'entreprise -->
-                    <h1>CoffeeTalk</h1>
+                    <a class="navbar-brand" href="/"><h2 class="titre-logo">CoffeeTalk</h2><img src="/logocoffeetalk2r.png" class="logo" alt="Tasse de café"></a>
                 </div>
                 <!-- Partie avec les différentes pages -->
                 <div class="footer-pages">
@@ -264,3 +278,4 @@
                 </div>
             </footer>
     </html>
+

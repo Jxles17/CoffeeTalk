@@ -25,12 +25,11 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
         display: flex;
         flex-direction: row;
         width: 100%;
-        margin-top: 7%;
-        margin-bottom: 7%;
+        margin-top: -7%;
     }
     .photo-bas1, .photo-bas2{
         margin-bottom: 5%;
-        border-radius: 5%;
+        border-radius: 50%;
         max-width: 100%;
     }
     .photo-bas2{
@@ -84,6 +83,9 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
         padding-bottom: 5%;
         width: 100%;
     }
+    .container-no-bg h2{
+        margin: 2% auto;
+    }
     .host h2, .host p{
         width: 50%;
         text-align: center;
@@ -109,7 +111,7 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
             z-index: -1;
         }
         .container-no-bg{
-            background-color: #642B23!important;
+            background-color: #FFE3B9!important;
         }
         .bg-vide{
             height: 250px;
@@ -130,7 +132,6 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
             justify-content: center;
             align-items: flex-start;
             margin-top: 1%;
-            margin-bottom: 1%;
         }
 
         .info {
@@ -141,24 +142,19 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
             margin-top: auto;
             margin-bottom: auto;
         }
-
-        .info p {
-            margin: 5% 0;
-            text-align: left!important;
-        }
-
+        .info h3, .info p, .info button{margin-top: 5%;}
         .btn {
             display: inline-block;
             padding: 10px 20px;
             margin-top: 10px;
-            background-color: #A66A46;
+            background-color: #642B23;
             color: #FFE3B9;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             text-decoration: none;
         }
-
+        .btn-radius{border-radius: 50px;}
         .btn:hover {
             background-color: #642B23;
         }
@@ -172,10 +168,10 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
 
         .article-card {
             flex: 0 1 48%; /* Flex-grow: 0, Flex-shrink: 1, Flex-basis: 48% */
-            border: 1px solid #ddd;
+           /* border: 1px solid #ddd; */
             border-radius: 5px;
             padding: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+           /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
             text-align: left;
             background-color: #FFE3B9;
         }
@@ -188,7 +184,7 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
             margin: 10px 0;
         }
         .article-card button {
-            margin: 10px 0;
+            margin: 2% auto;
         }
 
         #map-container {
@@ -200,7 +196,7 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
             margin: auto;
         }
         .container{width: 100%!important;}
-
+        .aligncenter{text-align: center; justify-content: center; display: flex; margin: auto;}
         /* Breakpoint pour les téléphones */
         @media (min-width: 2px) and (max-width: 1023px) {
             .background-video-container {
@@ -216,8 +212,9 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
             width: 100%;
             }
             .navbar-brand {
-                margin-left: 0%;
+                margin-left: 15%;
             }
+            .navbar-toggler{margin-right: 15%;}
         }
         .modal-header, .modal-body{color: #642B23!important;}
         .modal-dialog{margin: 15% auto;}
@@ -256,37 +253,36 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
         </div>
 
         <!-- Conteneur pour la vidéo de fond -->
-        <div class="background-video-container">
+        {# <div class="background-video-container">
             <video class="background-video" autoplay loop muted>
                 <source src="/videopres2.mp4" type="video/mp4">
                 Votre navigateur ne supporte pas la balise vidéo.
             </video>
-        </div>
+        </div> #}
 
         <!-- Section "Notre histoire" -->
         <div class="div-story">
             <div class="texte-story">
                 <h2>Nos derniers évènements</h2>
                 <p>Coffee Talk a commencé avec la passion de créer un espace accueillant où les amateurs de café pourraient se réunir, se détendre et partager des moments autour d'une tasse de spécialités.</p>
-                <button class="btn" type="button">En savoir plus</button>
+                <button class="btn  btn-radius" type="button">En savoir plus</button>
             </div>
         </div>
 
         <!-- Conteneur sans arrière-plan pour les articles -->
         <div class="container-no-bg">
             <!-- Section des articles -->
+            <h2 class="aligncenter">Nos derniers articles</h2>
             <div class="articles">
                 <div class="article-card">
-                    <h3>Article 1</h3>
                     <img src="/cafe.jpg" class="photo-bas1" alt="Tasse de café">
-                    <p>Description de l'article 1. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
+                    <h3 class="aligncenter">Cafés entre amis</h3>
+                    <button class="btn btn-radius aligncenter"><a class="btnarticle" href="/events">En savoir plus</a></button>
                 </div>
                 <div class="article-card">
-                    <h3>Article 2</h3>
                     <img src="/cafe.jpg" class="photo-bas1" alt="Tasse de café">
-                    <p>Description de l'article 2. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                    <button class="btn"><a class="btnarticle" href="/events">Lire la suite</a></button>
+                    <h3 class="aligncenter">L'art du cafe</h3>
+                    <button class="btn btn-radius aligncenter"><a class="btnarticle" href="/events">En savoir plus</a></button>
                 </div>
             </div>
 
@@ -295,17 +291,17 @@ CoffeeTalk - Votre café de spécialité préféré pour se détendre et partage
                 <div class="content">
                     <img src="cafe-home2.jpg" alt="Your Image Description" style=" width: 48.5%;">
                     <div class="info">
-                        <h3>NOS BOISSONS DU MONDE</h3>
-                        <p>Nos cafés viennent du monde entier, découvrez d'où précisément !</p>
-                        <p>- Café 1 - Londres, Royaume-Uni</p>
-                        <p>- Café 2 - Paris, France</p>
+                        <h3 class="aligncenter">Nos cafés</h3>
+                        <p class="aligncenter">Traditionnel</p>
+                        <button class="btn btn-radius aligncenter"><a class="btnarticle" href="/events">En savoir plus</a></button>
                     </div>
                 </div>
             </div>
 
             <!-- Conteneur pour la carte -->
             <div id="map-container">
-                <div id="map"></div>
+                {# <div id="map"></div> #}
+                <img src="cartemonder2.png" class="aligncenter" alt="Your Image Description" style="width: 45%;">
             </div>
 
             <!-- Section Instagram -->
